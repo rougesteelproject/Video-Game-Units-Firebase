@@ -4,8 +4,6 @@ from sys import maxsize
 
 from unit import Unit
 
-#TODO fields for gmail and for modpack
-
 class UnitCreatorMenu(tk.Frame):
     def __init__(self, callback_handler) -> None:
         super().__init__(callback_handler.top_level)
@@ -71,17 +69,23 @@ class UnitCreatorMenu(tk.Frame):
         self.spinbox_max_init.configure(textvariable=self.max_init_holder, from_=0.01, to=maxsize, increment=0.01, command=lambda: self._update_min_init(), validatecommand=vcmd)
         self.spinbox_max_init.pack(side="top")
 
+        self.entry_email = tk.Entry(self)
+        _text_ = "Your Email"
+        self.entry_email.delete("0", "end")
+        self.entry_email.insert("0", _text_)
+        self.entry_email.pack(side="top")
+
+        self.entry_modpack = tk.Entry(self)
+        _text_ = "Modpack Name"
+        self.entry_modpack.delete("0", "end")
+        self.entry_modpack.insert("0", _text_)
+        self.entry_modpack.pack(side="top")
+
         self.button_save_unit = tk.Button(self)
         self.button_save_unit.configure(text="Create", command=lambda :self._save_unit())
         self.button_save_unit.pack(side="top")
 
-        self.button_exit_unit_creator = tk.Button(self)
-        self.button_exit_unit_creator.configure(text="Main Menu", command=lambda: self._callback_handler.create_main_menu())
-        self.button_exit_unit_creator.pack(side="top")
-
         self.pack(side="top")
-
-        self.ready = True
 
     def _save_unit(self):
         game_version = int(self.game_version_holder.get())
@@ -90,7 +94,7 @@ class UnitCreatorMenu(tk.Frame):
         'base_health' : self.hp_holder.get(),
         'min_attack': self.spinbox_min_attack.get(),
         'ai_types' : ["basic"], 'attack_verb': 'attacked',
-        'game_version' : game_version}
+        'game_version' : game_version, 'creator_email' : self.entry_email.get(), 'modpack': self.entry_modpack.get()}
 
         if game_version >= 2:
             unit_dict.update({'min_initiative': self.spinbox_min_init.get()})
@@ -101,7 +105,7 @@ class UnitCreatorMenu(tk.Frame):
         self._game_loop.save_unit(Unit.from_dict(unit_dict))
 
     #these update functions work even when the user can input numbers directly into the spinbox
-    #via the textvariable
+    #via the textvariable, though user-inputed text does not impact the other spinbox
     
     #if max goes below min, min goes down,
         #and vice-versa
@@ -149,13 +153,3 @@ class UnitCreatorMenu(tk.Frame):
             self.spinbox_max_attack.configure(state=tk.DISABLED)
             self.spinbox_min_init.configure(state=tk.DISABLED)
             self.spinbox_max_init.configure(state=tk.DISABLED)
-
-
-    def _get_all_sub_widgets(frame):
-        _list = frame.winfo_children()
-
-        for item in _list :
-            if item.winfo_children() :
-                _list.extend(item.winfo_children())
-
-        return _list
