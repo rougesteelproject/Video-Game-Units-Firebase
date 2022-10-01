@@ -46,7 +46,7 @@ class Unit:
             unit.modpack = source[u'modpack']
 
         if u'creator_email' in source:
-            unit.modpack = source[u'creator_email']
+            unit.creator_email = source[u'creator_email']
             
         return unit
 

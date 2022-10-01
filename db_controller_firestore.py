@@ -1,15 +1,14 @@
-import firebase_admin
-from firebase_admin import firestore
-
+import constants
 import logging
 
 from unit import Unit
 
-class FirebaseDB():
-    def __init__(self) -> None:
+from google.cloud.firestore import Client, DELETE_FIELD, ArrayUnion, ArrayRemove
 
-        self._app = firebase_admin.initialize_app()
-        self._db = firestore.client()
+class FirebaseDB():
+    def __init__(self, credentials) -> None:
+
+        self._db = Client(constants.FIRESTORE_DB_NAME, credentials)
 
 #CREATE
     def _create(self, collection_id:str, document_id:str = None, create_dict:dict = {}, merge:bool = False):
@@ -170,7 +169,7 @@ class FirebaseDB():
         doc_ref = collection_ref.document(document_id)
         
         #To delete specific fields from a document
-        doc_ref.update({field: firestore.DELETE_FIELD})
+        doc_ref.update({field: DELETE_FIELD})
 
 #Project-specific
     def save_unit(self, unit):
@@ -210,8 +209,8 @@ class FirebaseDB():
     #These two aren't called because I don't see a need for them, but I wanted to include them to prove I could
     def add_ai_type(self, unit_name:str, ai_type:str):
         #union = append
-        self._update('units', unit_name, {u'ai_types' : firestore.ArrayUnion([ai_type])})
+        self._update('units', unit_name, {u'ai_types' : ArrayUnion([ai_type])})
 
     def remove_ai_type(self, unit_name:str, ai_type:str):
         #remove = remove()
-        self._update('units', unit_name, {u'ai_types' : firestore.ArrayRemove([ai_type])})
+        self._update('units', unit_name, {u'ai_types' : ArrayRemove([ai_type])})

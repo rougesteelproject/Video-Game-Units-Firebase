@@ -69,12 +69,6 @@ class UnitCreatorMenu(tk.Frame):
         self.spinbox_max_init.configure(textvariable=self.max_init_holder, from_=0.01, to=maxsize, increment=0.01, command=lambda: self._update_min_init(), validatecommand=vcmd)
         self.spinbox_max_init.pack(side="top")
 
-        self.entry_email = tk.Entry(self)
-        _text_ = "Your Email"
-        self.entry_email.delete("0", "end")
-        self.entry_email.insert("0", _text_)
-        self.entry_email.pack(side="top")
-
         self.entry_modpack = tk.Entry(self)
         _text_ = "Modpack Name"
         self.entry_modpack.delete("0", "end")
@@ -94,7 +88,7 @@ class UnitCreatorMenu(tk.Frame):
         'base_health' : self.hp_holder.get(),
         'min_attack': self.spinbox_min_attack.get(),
         'ai_types' : ["basic"], 'attack_verb': 'attacked',
-        'game_version' : game_version, 'creator_email' : self.entry_email.get(), 'modpack': self.entry_modpack.get()}
+        'game_version' : game_version, 'creator_email' : self._game_loop._user_email, 'modpack': self.entry_modpack.get()}
 
         if game_version >= 2:
             unit_dict.update({'min_initiative': self.spinbox_min_init.get()})
