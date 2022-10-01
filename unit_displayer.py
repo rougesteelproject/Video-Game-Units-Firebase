@@ -13,7 +13,7 @@ class UnitDispalyer(tk.Frame):
         self._unit_dict_label.pack(side="top")
 
         self.entry_unit_name = tk.Entry(self)
-        _text_ = "Your Email"
+        _text_ = "Unit Name"
         self.entry_unit_name.delete("0", "end")
         self.entry_unit_name.insert("0", _text_)
         self.entry_unit_name.pack(side="top")
@@ -25,7 +25,7 @@ class UnitDispalyer(tk.Frame):
         self.entry_modpack.pack(side="top")
 
         self._button_fetch_unit = tk.Button(self)
-        self._button_fetch_unit.configure(text="Fetch the Unit", command = lambda: self._display_unit())
+        self._button_fetch_unit.configure(text="Fetch the Unit", command = lambda: self._fetch_unit())
         self._button_fetch_unit.pack(side='top')
 
         self._button_create_unit = tk.Button(self)

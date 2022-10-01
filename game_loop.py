@@ -25,6 +25,7 @@ class GameLoop():
         
     def save_unit(self, unit):
         self._database_controler.save_unit(unit)
+        self.run_unit_display()
 
     def fetch_unit(self, unit_name, modpack_name):
         unit = self._database_controler.get_unit_by_modpack_and_name(modpack_name, unit_name)
