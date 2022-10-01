@@ -12,19 +12,18 @@ class FirebaseDB():
 
 #CREATE
     def _create(self, collection_id:str, document_id:str = None, create_dict:dict = {}, merge:bool = False):
-    #Three options to write data:
-        #1) Set the data of a document within a collection, explicitly specifying a document identifier.
-        #2) Add a new document to a collection. In this case, Cloud Firestore automatically generates the document identifier.
-        #3) Create an empty document with an automatically generated identifier, and assign data to it later.
+        #Three options to write data:
+            #1) Set the data of a document within a collection, explicitly specifying a document identifier.
+            #2) Add a new document to a collection. In this case, Cloud Firestore automatically generates the document identifier.
+            #3) Create an empty document with an automatically generated identifier, and assign data to it later.
 
-    #Cloud Firestore lets you write a variety of data types inside a document, 
-    # including strings, booleans, numbers, dates, null, and nested arrays and objects. 
-    # Cloud Firestore always stores numbers as doubles, regardless of what type of number you use in your code.
+        #Cloud Firestore lets you write a variety of data types inside a document, 
+        # including strings, booleans, numbers, dates, null, and nested arrays and objects. 
+        # Cloud Firestore always stores numbers as doubles, regardless of what type of number you use in your code.
 
-    #If the document does not exist, it will be created. If the document does exist, its contents will be overwritten
-    #   unless you specify that the data should be merged into the existing document, as follows:
-    #   doc_ref.set(update_dict, merge=True)
-
+        #If the document does not exist, it will be created. If the document does exist, its contents will be overwritten
+        #   unless you specify that the data should be merged into the existing document, as follows:
+        #   doc_ref.set(update_dict, merge=True)
 
         collection_ref = self._db.collection(collection_id)
         if document_id is not None:
@@ -64,7 +63,6 @@ class FirebaseDB():
 
             return None
 
-
         collection_ref = self._db.collection(collection_id)
 
         recursion_query = collection_ref
@@ -95,7 +93,6 @@ class FirebaseDB():
                 logging.warn(f"Firestore: Tried to run a WHERE opperation with invalid comparator {query_dict['comparator']}!")
 
                 break
-
 
             if query_dict['comparator'] in comparators_that_need_unique_fields:
                 if query_dict['field'] not in unique_fields:
@@ -204,7 +201,6 @@ class FirebaseDB():
         self.unit_list = [Unit.from_dict(data) for data in fetched_data]
 
         return self.unit_list[0]
-
 
     #These two aren't called because I don't see a need for them, but I wanted to include them to prove I could
     def add_ai_type(self, unit_name:str, ai_type:str):
