@@ -41,6 +41,8 @@ This software was built in Python, and the firestore segment uses the *firebase_
 * [Google's own firestore doccumentation - 1](https://firebase.google.com/docs/firestore/quickstart)
 * [Google's own firestore doccumentation - 2](https://cloud.google.com/firestore/docs/security/rules-conditions)
 * [Google's own firestore doccumentation - 3](https://cloud.google.com/architecture/authenticating-users-to-firestore-with-identity-platform-and-google-identities)
+* [Medium.com](https://medium.com/@bobthomas295/client-side-authentication-with-python-firestore-and-firebase-352e484a2634)
+* [Google's Firebase Documentation](https://firebase.google.com/docs/reference/rest/auth)
 
 # Future Work
 
