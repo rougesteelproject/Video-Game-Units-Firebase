@@ -41,6 +41,8 @@ This software was built in Python, and the firestore segment uses the *google.cl
 * [Google's Cloud Python samples on Github](https://github.com/GoogleCloudPlatform/python-docs-samples/blob/main/firestore/cloud-client/snippets.py#L121)
 * [Google's own firestore doccumentation - 1](https://firebase.google.com/docs/firestore/quickstart)
 * [Google's own firestore doccumentation - 2](https://cloud.google.com/firestore/docs/security/rules-conditions)
+* [Medium.com](https://medium.com/@bobthomas295/client-side-authentication-with-python-firestore-and-firebase-352e484a2634)
+* [Google's Firebase Documentation](https://firebase.google.com/docs/reference/rest/auth)
 
 # Future Work
 
