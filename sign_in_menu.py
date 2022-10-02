@@ -8,7 +8,7 @@ class SignInMenu(tk.Frame):
         self._game_loop = self._callback_handler._game_loop
 
         if error is not None:
-            self._error_label = tk.Label(text=error)
+            self._error_label = tk.Label(self, text=error)
             self._error_label.pack(side="top")
 
         self.entry_email = tk.Entry(self)

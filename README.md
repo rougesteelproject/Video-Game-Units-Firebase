@@ -10,7 +10,7 @@ This is a stripped-down version of that game,, featuring only unit creation, the
 In this demo, the software displays a tkinter-based gui.
 Using this gui, users can sign in, and having signed in, can create units by inputing a unit's stats. When the unit is saved, it is sent to the Firestore cloud database.
 When a unit is saved, users are taken to a gui page where they may search for a unit based on the values for 'name' and 'modpack' inserted earlier.
-Firestore *will not* write (create or update) a unit document if the creator email of the unit does not match the user's actual 
+Firestore *will not* write (create or update) a unit document if the creator email of the unit does not match the user's actual email.
 
 The purpose of the game is to be a testbed for a consistent pricing scheme for units in [play-by-post](https://en.wikipedia.org/wiki/Play-by-post_role-playing_game) games. The purpose of this element (that is, using firestore) is to be a more secure and resource-efficient way for users to create these units, or 'packs' of units, escpecially when compared to storing the data on the client side as files.
 

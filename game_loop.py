@@ -32,7 +32,6 @@ class GameLoop():
             self.run_sign_in_prompt(error = response['error']['message'])
         else:
             self._user_email = email
-            #TODO use this where it previously asked for emails
             
             # Use google.oauth2.credentials and the response object to create the correct user credentials
             credentials = Credentials(response['idToken'], response['refreshToken'])
