@@ -3,7 +3,7 @@ import logging
 class Unit:
     def __init__(self, name: str, base_health: int, min_attack: int, ai_types: list = ['basic'], game_version:float = 3, attack_verb:str = "attacked") -> None:
 
-        self.name = name
+        self._name = name
 
         self._game_version = int(game_version)
 
@@ -13,7 +13,7 @@ class Unit:
         self._max_attack = self._min_attack
         
 
-        self.attack_verb = attack_verb
+        self._attack_verb = attack_verb
 
         self._ai_types = ai_types
 
@@ -57,11 +57,11 @@ class Unit:
             self._set_raw_powers()
 
         if game_version == 3:
-            raw_power = self.raw_power_v3
+            raw_power = self._raw_power_v3
         elif game_version == 2:
-            raw_power = self.raw_power_v2
+            raw_power = self._raw_power_v2
         elif game_version == 1:
-            raw_power = self.raw_power_v1
+            raw_power = self._raw_power_v1
 
         if raw_power == None:
             logging.error("Tried to get raw_power from a unit with invalid stats.")
