@@ -22,31 +22,31 @@ class Unit:
 
         unit = Unit(name = source[u'_name'], base_health = source[u'_base_health'],  min_attack = source[u'_min_attack'], ai_types= source[u'_ai_types'], game_version= source[u'_game_version'], attack_verb= source[u'_attack_verb'])
         
-        if u'max_attack' in source:
+        if u'_max_attack' in source:
             unit._max_attack = source[u'_max_attack']
 
-        if u'min_initiative' in source:
+        if u'_min_initiative' in source:
             unit._min_initiative = source[u'_min_initiative']
-            if u'max_initiative' in source:
+            if u'_max_initiative' in source:
                 unit._max_initiative = source[u'_max_initiative']
             else:
                 unit._max_initiative = unit._min_initiative
 
-        if u'raw_power_v3' in source:
-            unit.raw_power_v3 = source[u'_raw_power_v3']
+        if u'_raw_power_v3' in source:
+            unit._raw_power_v3 = source[u'_raw_power_v3']
         
             
-        if u'raw_power_v2' in source:
-            unit.raw_power_v2 = source[u'_raw_power_v2']
+        if u'_raw_power_v2' in source:
+            unit._raw_power_v2 = source[u'_raw_power_v2']
         
-        if u'raw_power_v1' in source:
-            unit.raw_power_v1 = source[u'_raw_power_v1']
+        if u'_raw_power_v1' in source:
+            unit._raw_power_v1 = source[u'_raw_power_v1']
 
-        if u'modpack' in source:
-            unit.modpack = source[u'_modpack']
+        if u'_modpack' in source:
+            unit._modpack = source[u'_modpack']
 
-        if u'creator_email' in source:
-            unit.creator_email = source[u'_creator_email']
+        if u'_creator_email' in source:
+            unit._creator_email = source[u'_creator_email']
             
         return unit
 

@@ -170,17 +170,17 @@ class FirebaseDB():
 
 #Project-specific
     def save_unit(self, unit):
-        self._create(collection_id = 'units', document_id = unit.name, create_dict = unit.to_dict(), merge=True)
+        self._create(collection_id = 'units', document_id = unit._name, create_dict = unit.to_dict(), merge=True)
 
     def update_unit(self, unit):
         #This is unused, for now
-        self._update(collection_id = 'units', document_id = unit.name, update_dict = unit.to_dict())
+        self._update(collection_id = 'units', document_id = unit._name, update_dict = unit.to_dict())
 
     def get_unit_list_by_name(self, unit_name, game_version):
         #Firestore does not support what one might consider a %like% clause in WHERE
 
-        name_query_dict = {'field': 'name', 'comparator': '==','value': unit_name}
-        game_version_query_dict = {'field': 'game_version', 'comparator': '>=', 'value': game_version}
+        name_query_dict = {'field': '_name', 'comparator': '==','value': unit_name}
+        game_version_query_dict = {'field': '_game_version', 'comparator': '>=', 'value': game_version}
 
         query_dicts = [name_query_dict, game_version_query_dict]
 
@@ -191,8 +191,8 @@ class FirebaseDB():
         return self.unit_list
 
     def get_unit_by_modpack_and_name(self, modpack_name, unit_name):
-        name_query_dict = {'field': 'name', 'comparator': '==','value': unit_name}
-        modpack_query_dict = {'field': 'modpack', 'comparator': '==', 'value': modpack_name}
+        name_query_dict = {'field': '_name', 'comparator': '==','value': unit_name}
+        modpack_query_dict = {'field': '_modpack', 'comparator': '==', 'value': modpack_name}
 
         query_dicts = [name_query_dict, modpack_query_dict]
 
@@ -200,7 +200,10 @@ class FirebaseDB():
 
         self.unit_list = [Unit.from_dict(data) for data in fetched_data]
 
-        return self.unit_list[0]
+        if len(self.unit_list) > 0:
+            return self.unit_list[0]
+        else:
+            return None
 
     #These two aren't called because I don't see a need for them, but I wanted to include them to prove I could
     def add_ai_type(self, unit_name:str, ai_type:str):

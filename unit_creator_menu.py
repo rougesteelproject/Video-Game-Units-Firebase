@@ -84,17 +84,17 @@ class UnitCreatorMenu(tk.Frame):
     def _save_unit(self):
         game_version = int(self.game_version_holder.get())
 
-        unit_dict = {'name' : self.entry_name.get(),
-        'base_health' : self.hp_holder.get(),
-        'min_attack': self.spinbox_min_attack.get(),
-        'ai_types' : ["basic"], 'attack_verb': 'attacked',
-        'game_version' : game_version, 'creator_email' : self._game_loop._user_email, 'modpack': self.entry_modpack.get()}
+        unit_dict = {'_name' : self.entry_name.get(),
+        '_base_health' : self.hp_holder.get(),
+        '_min_attack': self.spinbox_min_attack.get(),
+        '_ai_types' : ["basic"], '_attack_verb': 'attacked',
+        '_game_version' : game_version, '_creator_email' : self._game_loop._user_email, '_modpack': self.entry_modpack.get()}
 
         if game_version >= 2:
-            unit_dict.update({'min_initiative': self.spinbox_min_init.get()})
+            unit_dict.update({'_min_initiative': self.spinbox_min_init.get()})
         
         if game_version >= 3:
-            unit_dict.update({'max_attack': self.spinbox_max_attack.get(), 'max_initiative': self.spinbox_max_init.get()})        
+            unit_dict.update({'_max_attack': self.spinbox_max_attack.get(), '_max_initiative': self.spinbox_max_init.get()})        
 
         self._game_loop.save_unit(Unit.from_dict(unit_dict))
 
