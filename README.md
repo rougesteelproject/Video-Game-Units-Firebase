@@ -6,7 +6,7 @@ I already have dabbled in SQL, Neo4j, and saving objects to disk as JSON files, 
 Because Firebase is structured similarly to JSON or to a dictionary, I imagined it would be simple to slot it into my existing projects.
 
 Because I was immediately excited about the applications of Firestore in my existing projects, I wrote the database controller from scratch, but added it to a video game i had already made.
-This is a stripped-down version of that game,, featuring only unit creation, the database controller, and anything they require to function.
+This is a stripped-down version of that game, featuring only unit creation, the database controller, and anything they require to function.
 In this demo, the software displays a tkinter-based gui.
 Using this gui, users can sign in, and having signed in, can create units by inputing a unit's stats. When the unit is saved, it is sent to the Firestore cloud database.
 When a unit is saved, users are taken to a gui page where they may search for a unit based on the values for 'name' and 'modpack' inserted earlier.
